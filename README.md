@@ -18,6 +18,6 @@
     - A search bar 
     - Movie suggesstions
 
-
+- Setup Router
 
     
