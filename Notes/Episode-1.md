@@ -90,3 +90,10 @@
 - Read Firebase docs
     - ~Reading documentation is the power of developer~
 - Redux store
+    - Install `npm i @reduxjs/toolkit`
+    - Install `npm i react-redux`
+    - Create appStore in utils with congifureStore which takes reducer object
+    - create userSlice using createSlcie, which takes a object of  name, initialState, reducer actions
+    - addUser and removeUser function
+    - then export the reducer and reducer actions
+    - add a Provider as wrapper to the app.js 
