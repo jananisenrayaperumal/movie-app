@@ -97,3 +97,19 @@
     - addUser and removeUser function
     - then export the reducer and reducer actions
     - add a Provider as wrapper to the app.js 
+
+- Implement sign in/sign up and sign out in same place
+    - ```js
+        useEffect(() => {
+		onAuthStateChanged(auth, user => {
+                if (user) {
+                    const { uid, email, displayName } = user;
+                    dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+                } else {
+                    // User is signed out
+                    dispatch(removeUser());
+                }
+            });
+        });
+    ```
+    - 
