@@ -16,7 +16,8 @@
 - Add Firebase
     - https://netflixgpt-25047.web.app/
 - Created Redux store with userslice
-
+- Implemented signout 
+- Update profile user
 
 # Features of our app
 - Netflix Home screen
