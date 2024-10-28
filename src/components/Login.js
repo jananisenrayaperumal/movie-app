@@ -3,13 +3,12 @@ import Header from "./Header";
 import { checkValidate } from "../utils/validate";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addUser} from "../utils/userSlice"
+import { addUser } from "../utils/userSlice";
+import { USER_AVATHAR, BG_IMAGE } from "../utils/constant";
 
 
 const Login = () => {
-	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [isSignInForm, setIsSignInForm] = useState(true);
 	const [errorMessage, setErrorMessage] = useState(null);
@@ -37,14 +36,11 @@ const Login = () => {
 			// Sign up here
 			createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
 			.then((userCredential) => {
-				const { uid, email } = auth.currentUser;
-				const photoURL = "https://avatars.githubusercontent.com/u/28778901?v=4";
-				const displayName = name?.current?.value;
 				updateProfile(auth.currentUser, {
-					displayName: displayName, photoURL: photoURL
-					}).then(() => {
-						dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoUrl: photoURL }));
-						navigate('/browse')
+					displayName: name?.current?.value, photoURL: USER_AVATHAR
+				}).then(() => {
+						const { uid, email, displayName, photoURL } = auth.currentUser;
+						dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
 					}).catch((error) => {
 						setErrorMessage(error.errorMessage);
 				});
@@ -60,8 +56,7 @@ const Login = () => {
 			signInWithEmailAndPassword(auth, email.current.value, password.current.value)
 			.then((userCredential) => {
 				const user = userCredential.user;
-				console.log(user)
-				navigate('/browse')
+				//console.log(user);
 			})
 			.catch((error) => {
 				const errorCode = error.code;
@@ -77,7 +72,7 @@ const Login = () => {
 		<div className="relative min-h-screen">
 			<Header />
 			<img
-				src="https://assets.nflxext.com/ffe/siteui/vlv3/7c0e18aa-2c95-474d-802e-7f30e75dcca4/web/CA-en-20241014-TRIFECTA-perspective_e4bd7558-9ce3-4046-a01b-01301e3fc24c_medium.jpg"
+				src={BG_IMAGE}
 				alt="bg"
 				className="absolute object-fill"
 			/>
