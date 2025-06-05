@@ -1,4 +1,4 @@
-# Netflix GPT
+# A Movie app
 
 - Create React App
 - Configured TailwindCss
